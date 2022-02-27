@@ -8,7 +8,7 @@
 #include "../Libft/libft.h"
 #include "../mlx/mlx.h"
 // #include "../GNL/get_next_line.h"
-#define BUFFER_SIZE 1
+#define BUFFER_SIZE 100
 
 typedef struct  s_helps
 {
@@ -30,5 +30,10 @@ int			ft_str_endline(char *str);
 char		*ft_remline(char *rem_line);
 char		*ft_clearrem(char *rem_line);
 int			get_next_line(int fd, char **line);
+int	ft_strlen_gnl(char *str);
+char	*ft_strjoin_gnl(char *rem_line, char *buffer);
+int	ft_str_endline_gnl(char *str);
+char	*ft_remline_gnl(char *rem_line);
+char	*ft_clearrem_gnl(char *rem_line);
 
 #endif //fdf_h

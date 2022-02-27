@@ -4,9 +4,11 @@ int main(int argc, char **argv)
 {
     int     fd;
     int     **matrix;
-    char    **str;
+    char    *str;
     int     count;
 
+    count = 0;
+    // str = (char **)malloc(sizeof(char **));
     matrix = (int **)malloc(sizeof(int **));
     if (!matrix)
         return (0);
@@ -14,7 +16,10 @@ int main(int argc, char **argv)
     {
         fd = open(argv[1], O_RDONLY);
         printf("fd---%d\n", fd);
-        count = get_next_line(fd, str);
+        printf("argv---%s\n", argv[1]);
+        count = get_next_line(fd, &str);
         printf("count---%d\n", count);
+        printf("str---%s\n", str);
+        close(fd);
     }
 }

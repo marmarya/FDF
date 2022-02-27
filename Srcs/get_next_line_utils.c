@@ -12,44 +12,45 @@
 
 #include "../Includes/fdf.h"
 
-// int		ft_strlen(char *str)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	if (!str)
-// 		return (0);
-// 	while (str[i])
-// 		i++;
-// 	return (i);
-// }
-
-// char	*ft_strjoin(char *rem_line, char *buffer)
-// {
-// 	int		i;
-// 	int		j;
-// 	char	*str_join;
-
-// 	if (!(str_join = malloc((sizeof(char) *
-// 		(ft_strlen(rem_line) + ft_strlen(buffer))) + 1)))
-// 		return (NULL);
-// 	i = 0;
-// 	j = 0;
-// 	if (rem_line)
-// 		while (rem_line[i])
-// 			str_join[j++] = rem_line[i++];
-// 	i = 0;
-// 	if (buffer)
-// 		while (buffer[i])
-// 			str_join[j++] = buffer[i++];
-// 	str_join[j] = '\0';
-// 	free(rem_line);
-// 	return (str_join);
-// }
-
-int		ft_str_endline(char *str)
+int	ft_strlen_gnl(char *str)
 {
-	int i;
+	int	i;
+
+	i = 0;
+	if (!str)
+		return (0);
+	while (str[i])
+		i++;
+	return (i);
+}
+
+char	*ft_strjoin_gnl(char *rem_line, char *buffer)
+{
+	int		i;
+	int		j;
+	char	*str_join;
+
+	str_join = malloc((sizeof(char)
+				* (ft_strlen_gnl(rem_line) + ft_strlen_gnl(buffer))) + 1);
+	if (!str_join)
+		return (NULL);
+	i = 0;
+	j = 0;
+	if (rem_line)
+		while (rem_line[i])
+			str_join[j++] = rem_line[i++];
+	i = 0;
+	if (buffer)
+		while (buffer[i])
+			str_join[j++] = buffer[i++];
+	str_join[j] = '\0';
+	free(rem_line);
+	return (str_join);
+}
+
+int	ft_str_endline_gnl(char *str)
+{
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -61,7 +62,7 @@ int		ft_str_endline(char *str)
 	return (0);
 }
 
-char	*ft_remline(char *rem_line)
+char	*ft_remline_gnl(char *rem_line)
 {
 	char	*tmp;
 	int		i;
@@ -69,7 +70,8 @@ char	*ft_remline(char *rem_line)
 	i = 0;
 	while (rem_line && rem_line[i] != '\0' && rem_line[i] != '\n')
 		i++;
-	if (!(tmp = malloc((sizeof(char) * i) + 1)))
+	tmp = malloc((sizeof(char) * i) + 1);
+	if (!tmp)
 		return (NULL);
 	i = 0;
 	while (rem_line && rem_line[i] != '\0' && rem_line[i] != '\n')
@@ -81,10 +83,9 @@ char	*ft_remline(char *rem_line)
 	return (tmp);
 }
 
-char	*ft_clearrem(char *rem_line)
+char	*ft_clearrem_gnl(char *rem_line)
 {
 	char	*tmp;
-	int		len;
 	int		i;
 	int		j;
 
@@ -98,8 +99,8 @@ char	*ft_clearrem(char *rem_line)
 		free(rem_line);
 		return (NULL);
 	}
-	len = ft_strlen(rem_line) - i;
-	if (!(tmp = malloc((sizeof(char) * len) + 1)))
+	tmp = malloc((sizeof(char) * ft_strlen_gnl(rem_line) - i) + 1);
+	if (!tmp)
 		return (NULL);
 	i++;
 	j = 0;
