@@ -20,11 +20,19 @@ typedef struct  s_helps
     void    *win_ptr;
 }   helps;
 
+typedef struct s_coord
+{
+    int x;
+    int y;
+    int value;
+}   coord;
+
+
 int         ft_deal_key(int key, void   *data);
 int         ft_get_height(char  *file_name);
 int         ft_get_width(char   *file_name);
 void        ft_fill_matrix(int  *line_z, char *line);
-void        ft_read_file(char   *file_name, helps *data);
+// void        ft_read_file(char   *file_name, helps *data);
 char		*ft_strnew(size_t size);
 int			ft_str_endline(char *str);
 char		*ft_remline(char *rem_line);
@@ -35,5 +43,7 @@ char	*ft_strjoin_gnl(char *rem_line, char *buffer);
 int	ft_str_endline_gnl(char *str);
 char	*ft_remline_gnl(char *rem_line);
 char	*ft_clearrem_gnl(char *rem_line);
+int     *ft_read_file(char *argv, int   fd, char    *line);
+
 
 #endif //fdf_h

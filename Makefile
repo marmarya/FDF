@@ -1,11 +1,9 @@
 SRCS		= $(shell find "./Srcs" -name "*c")
 OBJS		= ${SRCS:.c=.o}
-#BONUS_OBJS  = ${BONUSES:.c=.o}
 NAME		= fdf
 CC			= gcc
 RM			= rm -f
 CFLAGS		= -Wall -Wextra -Werror
-#AR			= ar csr
 
 .c.o :
 	@${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
@@ -13,13 +11,11 @@ CFLAGS		= -Wall -Wextra -Werror
 $(NAME) : ${OBJS}
 	@${CC} ${OBJS}
 
-#bonus : ${BONUS_OBJS}
-#	@${AR} libft.a ${BONUS_OBJS}
-
-
 all : ${NAME}
 
-compile : all | ./a.out
+compile : all
+	./a.out test_maps/10-2.fdf
+
 clean :
 	@${RM} ${OBJS}
 
