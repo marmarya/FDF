@@ -1,27 +1,28 @@
-SRCS		= $(shell find "./Srcs" -name "*c")
-OBJS		= ${SRCS:.c=.o}
-NAME		= fdf
-CC			= gcc
-RM			= rm -f
-CFLAGS		= -Wall -Wextra -Werror
+NAME = fdf
+SRCS = $(shell find "./Srcs" -d 1 -name "*c")
+OBJS = ${SRCS:.c=.o}
+LIBFT = ./Libft/libft.a
+CC = gcc
+RM = rm -rf
+CFLAGS = -Wall -Wextra -Werror
+AR = ar csr
 
-.c.o :
-	@${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+%.o: %.c
+	$(CC) -Wall -Wextra -Werror -Imlx -c $< -o $@
 
-$(NAME) : ${OBJS}
-	@${CC} ${OBJS}
+$(NAME): $(OBJS)
+	@$(MAKE) -C ./Libft
+	$(CC) ${OBJS} -lmlx -framework OpenGL -framework AppKit -o ${NAME}
 
 all : ${NAME}
 
-compile : all
-	./a.out test_maps/10-2.fdf
-
 clean :
-	@${RM} ${OBJS}
+	#${NAME}
+	${RM} ${OBJS}
 
 fclean : clean
-	@${RM} ${NAME}
+	${RM} ${NAME}
 
 re : fclean all
 
-.PHONY: all clean fclean re .c.o
+.PHONY : all clean fclean re .c.o
